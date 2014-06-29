@@ -1,17 +1,18 @@
-import re, os
+import re, os, calendar, time
 
 from sys import argv
+from replacements import *
 
 # passing variables
 #script, search, replacement = argv
-script, search = argv
+#script, search = argv
 #replace = "yomomma"
 #replacement = "caterpillar"
 
 # defining walking search (it is case sensitive)
 def multisearch(search, replacement):
 # walk the directory tree, search, and replace
-    for dname, dirs, files in os.walk("./SRtest"):
+    for dname, dirs, files in os.walk("./foocoin"):
         for fname in files:
             fpath = os.path.join(dname, fname)
             with open(fpath) as f:
@@ -19,22 +20,24 @@ def multisearch(search, replacement):
             s = s.replace(search, replacement)
             with open(fpath, "w") as f:
                 f.write(s)
+            if search in fname:
+                                
 
 def multisearchTEST(search):
-    for dname, dirs, files in os.walk("./foocoin-master"):
+    for dname, dirs, files in os.walk("./foocoin"):
         for fname in files:
             fpath = os.path.join(dname, fname)
             text = open(fpath, "r")
             for line in text:
                 if re.match("(.*)%s(.*)"%search, line):
-                    print ("I found this:\n'%s'" %(line))
+                    print "I found this:\n'%s'" %(line)
             
 
 # what is being searched
-Scname_lc = "foocoin"
-Scname_uc = "FOOCOIN"
-Scname_mc = "FooCoin"
-Scabbrev = "FOO"
+Scname_lc = "foocoin" # lowercase
+Scname_uc = "FOOCOIN" # CAPS
+Scname_mc = "FooCoin" # Mixed
+Scabbrev = "FOO" # CAPS
 Srpc = "55883"
 Sp2p = "55884"
 Stestnet = "45884"
@@ -51,10 +54,28 @@ Sepoch_hreadable = "Traditionally one puts something timely here coinciding with
 
 searchvars = (Scname_lc, Scname_uc , Scname_mc, Scabbrev, Srpc, Sp2p, Stestnet, Sseedsite, 
               Sseedip, Sblockreward, Sblockfreq, Sdifficultyfreq, Smaxcoins, Sblockstoday, 
-              Saddressletter, Sepoch, Sepoch_hreadable)   
+              Saddressletter, Sepoch, Sepoch_hreadable)
+   
 
-for item in searchvars:
-    print ("Searching for %s sir . . ." %(item))
-    multisearchTEST(item) 
+# for loop used to test
+#for item in searchvars:
+#    print ("Searching for %s sir . . ." %(item))
+#    multisearchTEST(item) 
 
-#multisearchTEST(search)
+# replacements in replacements.py
+current_epoch = calendar.timegm(time.gmtime())
+Repoch =  "block.nTime    = %s" %(current_epoch)
+
+replacementvars = (Rcname_lc, Rcname_uc , Rcname_mc, Rcabbrev, Rrpc, Rp2p, Rtestnet, Rseedsite,
+                   Rseedip, Rblockreward, Rblockfreq, Rdifficultyfreq, Rmaxcoins, Rblockstoday, 
+                   Raddressletter, Repoch, Repoch_hreadable)
+
+
+# for loop used to search and replace
+for search, replace in zip(searchvars, replacementvars):
+    print ("Searching for \n%s\nreplacing with\n%s\n\n" %(search, replace))
+    multisearch(search, replace) 
+
+print "DONE!"
+
+
