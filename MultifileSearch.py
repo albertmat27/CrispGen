@@ -12,16 +12,19 @@ from replacements import *
 # defining walking search (it is case sensitive)
 def multisearch(search, replacement):
 # walk the directory tree, search, and replace
+    count = 0
     for dname, dirs, files in os.walk("./foocoin"):
         for fname in files:
             fpath = os.path.join(dname, fname)
             with open(fpath) as f:
                 s = f.read()
-            s = s.replace(search, replacement)
+            while replace in s:
+                s = s.replace(search, replacement)
+                count +=1
             with open(fpath, "w") as f:
                 f.write(s)
             if search in fname:
-                                
+    print "%s instances of {%s} were replaced with {%s}." (count, replace,replacement)
 
 def multisearchTEST(search):
     for dname, dirs, files in os.walk("./foocoin"):
