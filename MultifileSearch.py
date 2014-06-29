@@ -74,7 +74,7 @@ replacementvars = (Rcname_lc, Rcname_uc , Rcname_mc, Rname_qt, Rcabbrev, Rrpc, R
 
 # for loop used to search and replace
 for search, replace in zip(searchvars, replacementvars):
-    print ("Searching for \n%s\nreplacing with\n%s\n\n" %(search, replace))
+    print ("\n\nSearching for: %s\nReplacing with: %s" %(search, replace))
     multisearch(search, replace) 
 
 print "DONE!"
