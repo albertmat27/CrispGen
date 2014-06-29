@@ -4,6 +4,7 @@
 Rcname_lc = "tomahawkcoin" # lowercase
 Rcname_uc = "TOMAHAWK" # CAPS
 Rcname_mc = "TomahawkCoin" # Mixed
+Rname_qt = "Tomahawkcoin" # qt
 Rcabbrev = "TMK" # CAPS 
 Rrpc = "55765"
 Rp2p = "55766"

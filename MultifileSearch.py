@@ -18,14 +18,13 @@ def multisearch(search, replacement):
             fpath = os.path.join(dname, fname)
             with open(fpath) as f:
                 s = f.read()
-            while replace in s:
+            if search in s:
                 s = s.replace(search, replacement)
                 count +=1
             with open(fpath, "w") as f:
                 f.write(s)
-            if search in fname:
-    print "%s instances of {%s} were replaced with {%s}." (count, replace,replacement)
-
+    print "%s instances of {%s} were replaced with {%s}." %(count, search, replacement)
+    
 def multisearchTEST(search):
     for dname, dirs, files in os.walk("./foocoin"):
         for fname in files:
@@ -40,25 +39,25 @@ def multisearchTEST(search):
 Scname_lc = "foocoin" # lowercase
 Scname_uc = "FOOCOIN" # CAPS
 Scname_mc = "FooCoin" # Mixed
+Sname_qt = "Foocoin" # qt
 Scabbrev = "FOO" # CAPS
 Srpc = "55883"
 Sp2p = "55884"
 Stestnet = "45884"
-Sseedsite = "some website name"
-Sseedip = "somewebsite.org or ip x.x.x.x"
+Sseedsite = "andarazoroflove"
+Sseedip = Rseedsite + ".org"
 Sblockreward = "nSubsidy = 1"
 Sblockfreq = "nTargetSpacing = 120" # seconds
 Sdifficultyfreq = "nTargetTimespan = 1" # days
 Smaxcoins = "MAX_MONEY = 10000"
-Sblockstoday = "dPriority > COIN * 720"
+Sblockstoday = "dPriority > COIN * 576"
 Saddressletter = "PUBKEY_ADDRESS = 38" # set to 11 for C
 Sepoch =  "block.nTime    = 1300000000"
 Sepoch_hreadable = "Traditionally one puts something timely here coinciding with the epoch"
 
-searchvars = (Scname_lc, Scname_uc , Scname_mc, Scabbrev, Srpc, Sp2p, Stestnet, Sseedsite, 
-              Sseedip, Sblockreward, Sblockfreq, Sdifficultyfreq, Smaxcoins, Sblockstoday, 
-              Saddressletter, Sepoch, Sepoch_hreadable)
-   
+searchvars = (Scname_lc, Scname_uc , Scname_mc, Sname_qt, Scabbrev, Srpc, Sp2p, Stestnet, 
+              Sseedsite, Sseedip, Sblockreward, Sblockfreq, Sdifficultyfreq, Smaxcoins, 
+              Sblockstoday, Saddressletter, Sepoch, Sepoch_hreadable)   
 
 # for loop used to test
 #for item in searchvars:
@@ -69,10 +68,9 @@ searchvars = (Scname_lc, Scname_uc , Scname_mc, Scabbrev, Srpc, Sp2p, Stestnet, 
 current_epoch = calendar.timegm(time.gmtime())
 Repoch =  "block.nTime    = %s" %(current_epoch)
 
-replacementvars = (Rcname_lc, Rcname_uc , Rcname_mc, Rcabbrev, Rrpc, Rp2p, Rtestnet, Rseedsite,
-                   Rseedip, Rblockreward, Rblockfreq, Rdifficultyfreq, Rmaxcoins, Rblockstoday, 
-                   Raddressletter, Repoch, Repoch_hreadable)
-
+replacementvars = (Rcname_lc, Rcname_uc , Rcname_mc, Rname_qt, Rcabbrev, Rrpc, Rp2p, Rtestnet, 
+                   Rseedsite, Rseedip, Rblockreward, Rblockfreq, Rdifficultyfreq, Rmaxcoins, 
+                   Rblockstoday, Raddressletter, Repoch, Repoch_hreadable)
 
 # for loop used to search and replace
 for search, replace in zip(searchvars, replacementvars):
