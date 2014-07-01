@@ -77,6 +77,12 @@ for search, replace in zip(searchvars, replacementvars):
     print ("\n\nSearching for: %s\nReplacing with: %s" %(search, replace))
     multisearch(search, replace) 
 
+# rename entire dir
+os.rename(Scname_lc, Rcname_lc)
+# rename qt.pro
+os.rename(Scname_lc + "-qt.pro", Rcname_lc + "-qt.pro")
+
+
 print "DONE!"
 
 
