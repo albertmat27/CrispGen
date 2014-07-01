@@ -80,7 +80,7 @@ for search, replace in zip(searchvars, replacementvars):
 # rename entire dir
 os.rename(Scname_lc, Rcname_lc)
 # rename qt.pro
-os.rename(Scname_lc + "-qt.pro", Rcname_lc + "-qt.pro")
+os.rename(Scname_lc + "/" + Scname_lc + "-qt.pro", Rcname_lc + "/" + Rcname_lc + "-qt.pro")
 
 
 print "DONE!"
