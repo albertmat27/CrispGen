@@ -42,26 +42,10 @@ def execute(command):
 
     if (exitCode == 0):
         return output
-    # if there is a problem compiling ABORT!
-    else: #raise
-        print "There was a problem casting execute spell, sir. exitCode: %s" % exitCode
-        sys.exit(1)
-
-# will not abort script even if exitCode is bad
-def hardexecute(command):
-    print "Hello sir, hardexecute here. Expect errors."
-    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-
-    # Poll Process for new output until finished
-    while True:
-        nextline= process.stdout.readline()
-        if nextline == '' and process.poll() != None:
-            break
-        sys.stdout.write(nextline)
-        sys.stdout.flush()
+    else: raise
+        #raise ProcessException(command, exitCode, output)
         
-    output = process.communicate()[0]
-    return output
+#execute("bash echotest.sh")
 
 # copy anything
 def copy(src, dst):

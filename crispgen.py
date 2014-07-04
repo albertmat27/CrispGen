@@ -56,8 +56,39 @@ elif (sysflag == "-unix"):
 else:
     sys.exit("You gave: [%s]\nAcceptable flags are [-unix] or [-osx], sir." % sysflag)
  
-print "DONE!"   
-    
+# executing daemon to generate merkle hash in ~/.coin/coin.conf
+spells.hardexecute("%s/src/%sd" % (Rcname, Rcname)) 
+  
+# if goodkeywords 
+#   then ./barcoind (generate merkle hash)
+#   wait for process to finish
+# 
+# if expected failure
+#   then search the tail of the log file for the merkle hash and set it to var
+# 
+# paste merkle hash in main.cpp
+# makefile 
+#  wait for process to finish
+# ./barcoind
+#   wait for output
+#
+# if expected error
+#   search through debug.log and set genhash and nonce to vars
+# 
+# paste genhash and nonce into main.cpp and genhash into checkpoints.cpp
+# makefile
+# 
+# scp barcoin to derek
+# plant child script
+# execute it
+# child script: 
+#       makefile
+#       wait for script to finish
+#       if good keywords
+#           then ./barcoind -connect=Jdebian
+#       else return error to log
+
+# edge of knowledge
 
 
 
