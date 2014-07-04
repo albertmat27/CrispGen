@@ -1,6 +1,23 @@
 import subprocess, sys, shutil, errno, os
 from subprocess import Popen
 
+# replace text in main.cpp
+def infilereplace(infile, stext, rtext):
+    count = 0 
+    with open(infile) as f:
+        s = f.read()
+        if stext in s:
+            print "found it!"
+            s = s.replace(stext, rtext)
+            print "filled it!"
+            count += 1
+        with open(infile, "w") as f:
+            f.write(s)
+    print "Instances: %s\nSearch: %s\nReplacement: %s" %(count, stext, rtext)
+
+    
+
+
 # defining walking search (it is case sensitive)
 def multisearch(search, replacement):
 # walk the directory tree, search, and replace

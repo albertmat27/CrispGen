@@ -21,3 +21,8 @@ Saddressletter = "PUBKEY_ADDRESS = 38" # set to 11 for C
 Sepoch =  "block.nTime    = 1300000000"
 Sepoch_hreadable = "Traditionally one puts something timely here coinciding with the epoch"
 
+# what variables will be searched for and replaced
+searchvars = (Scname_lc, Scname_uc , Scname_mc, Sname_qt, Scabbrev, Srpc, Sp2p, Stestnet, 
+              Sseedsite, Sseedip, Sblockreward, Sblockfreq, Sdifficultyfreq, Smaxcoins, 
+              Sblockstoday, Saddressletter, Sepoch, Sepoch_hreadable)   
+

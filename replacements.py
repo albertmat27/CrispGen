@@ -1,4 +1,5 @@
 # replacements.py
+import calendar, time
 
 #what are the replacements
 Rcname_lc = "tomahawkcoin" # lowercase
@@ -18,4 +19,12 @@ Rmaxcoins = "MAX_MONEY = 10000000"
 Rblockstoday = "dPriority > COIN * 10"
 Raddressletter = "PUBKEY_ADDRESS = 11" # set to 11 for C
 Repoch_hreadable = "Today"
+
+# replacements
+current_epoch = calendar.timegm(time.gmtime())
+Repoch =  "block.nTime    = %s" %(current_epoch)
+
+replacementvars = (Rcname_lc, Rcname_uc , Rcname_mc, Rname_qt, Rcabbrev, Rrpc, Rp2p, Rtestnet, 
+                   Rseedsite, Rseedip, Rblockreward, Rblockfreq, Rdifficultyfreq, Rmaxcoins, 
+                   Rblockstoday, Raddressletter, Repoch, Repoch_hreadable)
 
