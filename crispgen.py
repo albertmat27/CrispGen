@@ -31,16 +31,7 @@ if os.path.exists(profile_new) == True:
 
 # first compile
 makepath = os.path.join(Rcname_lc, "src/")
-print "Makefile path is %s\nExecuting Makefile... " % (makepath)
-
-if (sysflag == "-osx"):
-    spells.execute("make -C %s -f %s USE_UPNP=-" % (makepath, "makefile.osx"))
-
-elif (sysflag == "-unix"):
-    spells.execute("make -C %s -f %s USE_UPNP=-" % (makepath, "makefile.unix"))
-
-else:
-    sys.exit("You gave: [%s]\nAcceptable flags are [-unix] or [-osx], sir." % sysflag)
+makefile(sysflag)
 
 # executing daemon to generate merkle hash in ~/.coin/coin.conf
 spells.hardexecute("%s/src/%sd" % (Rcname_lc, Rcname_lc)) 
@@ -65,16 +56,7 @@ spells.infilereplace(main, stext, rtext)
 
 
 # makefile 
-print "Makefile path is %s\nExecuting Makefile... " % (makepath)
-
-if (sysflag == "-osx"):
-    spells.execute("make -C %s -f %s USE_UPNP=-" % (makepath, "makefile.osx"))
-
-elif (sysflag == "-unix"):
-    spells.execute("make -C %s -f %s USE_UPNP=-" % (makepath, "makefile.unix"))
-
-else:
-    sys.exit("You gave: [%s]\nAcceptable flags are [-unix] or [-osx], sir." % sysflag)
+makefile(sysflag)
 
 # launching daemon to hash genesis block
 spells.hardexecute("%s/src/%sd" % (Rcname_lc, Rcname_lc)) 
@@ -120,18 +102,7 @@ rtext = 'uint256("0x' + ghash + '"))'
 spells.infilereplace(checkpoints, stext, rtext)
  
 # makefile
-
-print "Makefile path is %s\nExecuting Makefile... " % (makepath)
-
-if (sysflag == "-osx"):
-    spells.execute("make -C %s -f %s USE_UPNP=-" % (makepath, "makefile.osx"))
-
-elif (sysflag == "-unix"):
-    spells.execute("make -C %s -f %s USE_UPNP=-" % (makepath, "makefile.unix"))
-
-else:
-    sys.exit("You gave: [%s]\nAcceptable flags are [-unix] or [-osx], sir." % sysflag)
-
+makefile(sysflag)
 
 # make conf files
 rpcuser = Rcname_lc + "rpc"

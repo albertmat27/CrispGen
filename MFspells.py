@@ -1,6 +1,19 @@
 import subprocess, sys, shutil, errno, os
 from subprocess import Popen
 
+# compile code
+def makefile(sysflag)
+    print "Makefile path is %s\nExecuting Makefile... " % (makepath)
+
+    if (sysflag == "-osx"):
+        spells.execute("make -C %s -f %s USE_UPNP=-" % (makepath, "makefile.osx"))
+
+    elif (sysflag == "-unix"):
+        spells.execute("make -C %s -f %s USE_UPNP=-" % (makepath, "makefile.unix"))
+
+    else:
+        sys.exit("You gave: [%s]\nAcceptable flags are [-unix] or [-osx], sir." % sysflag)
+
 # replace text in main.cpp
 def infilereplace(infile, stext, rtext):
     count = 0 
