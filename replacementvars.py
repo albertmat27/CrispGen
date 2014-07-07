@@ -1,15 +1,20 @@
 # replacements.py
 import calendar, time
 
+from random import randint
+
+#random port number generation
+Randport = randint(50010,59999) #inclusive
+
 #what are the replacements
 Rcname_lc = "tomahawkcoin" # lowercase
 Rcname_uc = "TOMAHAWK" # CAPS
 Rcname_mc = "TomahawkCoin" # Mixed
 Rname_qt = "Tomahawkcoin" # qt
 Rcabbrev = "TMK" # CAPS 
-Rrpc = "55765"
-Rp2p = "55766"
-Rtestnet = "55767"
+Rrpc = str(Randport) #random port number, range=50010-59999
+Rp2p = str(Randport+1) #"random port number" +1
+Rtestnet = str(Randport+2) #"random port number" +2
 Rseedsite = "crispcoin.net"
 Rseedip = "107.170.242.134"
 Rblockreward = "nSubsidy = 1000000"
