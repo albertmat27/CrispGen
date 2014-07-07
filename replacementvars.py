@@ -6,6 +6,9 @@ from random import randint
 #random port number generation
 Randport = randint(50010,59999) #inclusive
 
+#random first letter/number generation
+Randaddresschar = randint(0,57) #inclusive
+
 #what are the replacements
 Rcname_lc = "tomahawkcoin" # lowercase
 Rcname_uc = "TOMAHAWK" # CAPS
@@ -22,7 +25,7 @@ Rblockfreq = "nTargetSpacing = 30" # seconds
 Rdifficultyfreq = "nTargetTimespan = 1" # days
 Rmaxcoins = "MAX_MONEY = 10000000"
 Rblockstoday = "dPriority > COIN * 10"
-Raddressletter = "PUBKEY_ADDRESS = 11" # set to 11 for C
+Raddressletter = "PUBKEY_ADDRESS = %s" % str(Randaddresschar)  #first character in address randomly selected from base-58 alphanumeric (lowercase/uppercase) set
 Repoch_hreadable = "Today"
 
 current_epoch = calendar.timegm(time.gmtime())
