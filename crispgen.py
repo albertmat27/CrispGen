@@ -100,6 +100,18 @@ checkpoints = os.path.join(Rcname_lc, "src", "checkpoints.cpp")
 stext = 'uint256("0x"))'
 rtext = 'uint256("0x' + ghash + '"))'
 spells.infilereplace(checkpoints, stext, rtext)
+
+# replace "GEO" with coin abbrev of choice
+units = os.path.join(Rcname_lc, "src", "qt", "Bitcoinunits.cpp")
+stext = '"GEO"'
+rtext = Rcabbrev
+spells.infilereplace(units, stext, rtext)
+
+# rename Qt
+stext = '"Decayscript-Qt"'
+rtext = Rname_qt + "-Qt"
+spells.infilereplace(profile_new, stext, rtext)
+
  
 # makefile
 makefile(sysflag)
