@@ -103,15 +103,20 @@ spells.infilereplace(checkpoints, stext, rtext)
 
 # replace "GEO" with coin abbrev of choice
 units = os.path.join(Rcname_lc, "src", "qt", "Bitcoinunits.cpp")
-stext = '"GEO"'
+stext = 'GEO'
 rtext = Rcabbrev
 spells.infilereplace(units, stext, rtext)
 
 # rename Qt
 stext = '"Decayscript-Qt"'
-rtext = Rname_qt + "-Qt"
+rtext = '"%s-Qt"' % Rname_qt
 spells.infilereplace(profile_new, stext, rtext)
 
+# patch up macdockiconhandler
+stext = "this->m_dockIconClickEventHandler = [[DockIconClickEventHandler alloc] initWithDockIconHandler:this];"
+rtext = "this->m_dockIconClickEventHandler = (objc_object *)[[DockIconClickEventHandler alloc] initWithDockIconHandler:this];"
+patchfile = os.path.join(Rcname_lc, "src", "qt", "macdockiconhandler.mm")
+spells.infilereplace(patchfile, stext, rtext)
  
 # makefile
 makefile(sysflag)

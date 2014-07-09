@@ -1,0 +1,6 @@
+Wallet maker needs:
+fresh hardcoded variables depending on the coin wallet being compiled
+a copy of libdb_cxx-4.8.dylib in the directory it is executed from
+sudo priviledges (can be done by editing the sudoers file eg. $ sudo visudo)
+be executed using its entire path e.g. /Users/joe/Documents/MyFolder/WalletMaker.sh
+

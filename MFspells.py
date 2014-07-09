@@ -2,7 +2,7 @@ import subprocess, sys, shutil, errno, os
 from subprocess import Popen
 
 # compile code
-def makefile(sysflag)
+def makefile(sysflag):
     print "Makefile path is %s\nExecuting Makefile... " % (makepath)
 
     if (sysflag == "-osx"):
