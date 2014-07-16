@@ -31,7 +31,7 @@ if os.path.exists(profile_new) == True:
 
 # first compile
 makepath = os.path.join(Rcname_lc, "src/")
-spells.makefile(sysflag)
+spells.makefile(sysflag, makepath)
 
 # executing daemon to generate merkle hash in ~/.coin/coin.conf
 spells.hardexecute("%s/src/%sd" % (Rcname_lc, Rcname_lc)) 
@@ -56,7 +56,7 @@ spells.infilereplace(main, stext, rtext)
 
 
 # makefile 
-spells.makefile(sysflag)
+spells.makefile(sysflag, makepath)
 
 # launching daemon to hash genesis block
 spells.hardexecute("%s/src/%sd" % (Rcname_lc, Rcname_lc)) 
@@ -119,7 +119,7 @@ patchfile = os.path.join(Rcname_lc, "src", "qt", "macdockiconhandler.mm")
 spells.infilereplace(patchfile, stext, rtext)
  
 # makefile
-spells.makefile(sysflag)
+spells.makefile(sysflag, makepath)
 
 # make conf files
 rpcuser = Rcname_lc + "rpc"
