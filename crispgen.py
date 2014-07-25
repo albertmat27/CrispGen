@@ -102,7 +102,7 @@ rtext = 'uint256("0x' + ghash + '"))'
 spells.infilereplace(checkpoints, stext, rtext)
 
 # replace "GEO" with coin abbrev of choice
-units = os.path.join(Rcname_lc, "src", "qt", "Bitcoinunits.cpp")
+units = os.path.join(Rcname_lc, "src", "qt", "bitcoinunits.cpp")
 stext = 'GEO'
 rtext = Rcabbrev
 spells.infilereplace(units, stext, rtext)
