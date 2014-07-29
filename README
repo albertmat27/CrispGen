@@ -1,0 +1,4 @@
+# Edit replacentvars.py with the params of new coin
+# execute crispgen
+#   $ python crispgen
+# compatible with osx. Make sure to use the -osx flag.

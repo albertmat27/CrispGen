@@ -8,8 +8,19 @@ from sys import argv
 from replacementvars import *
 from foocoinvars import *
 
-# osx (-osx), or unix (-unix) (makefile)?
-sysflag = argv[1]
+# compile on unix unless -osx flag is specified
+if len(argv) < 2:
+    sysflag="-unix"
+elif len(argv[1]) > 0:
+    sysflag = argv[1]
+print "Compiling for sysflag: %s" % sysflag
+
+# make fresh copy of foocoin
+print "Making fresh copy of foocoin. . ."
+spells.copy("foocoin-master", "foocoin")
+if os.path.exists("foocoin") == True:
+    print "Just made a fresh copy of foocoin, sir."
+
 # search and replace
 for search, replace in zip(searchvars, replacementvars):
     print ("\n\nSearching for: %s\nReplacing with: %s" %(search, replace))

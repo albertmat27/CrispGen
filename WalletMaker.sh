@@ -1,12 +1,32 @@
 #!/bin/bash
 
-#take args instead?
-qt='Luxcoin-Qt.app'
-qtpro='luxcoin-qt.pro'
-qtproc='Luxcoin-Qt'
-name='luxcoin'
-logo='luxcoin.jpeg'
-dmg='LuxWallet.dmg'
+# hard code
+#qt='Luxcoin-Qt.app'
+#qtpro='luxcoin-qt.pro'
+#qtproc='Luxcoin-Qt'
+#name='luxcoin'
+#logo='luxcoin.jpeg'
+#dmg='LuxWallet.dmg'
+
+# make sure coin name is input
+#   for automation, pass coin name as variable 1 (e.g. ./script coinname)
+if [[ -n "$1" ]]; then
+    name=$1
+else
+    printf "Enter name of coin (e.g. luxcoin)\n> "
+    read name
+fi
+
+echo "Make sure logo is of the form 'coinname.jpeg'"
+
+# ensure letter case has correct formatting
+name_lc=$(echo $name | tr '[:upper:]' '[:lower:]')
+logo=${name_lc}'.jpeg'
+dmg=$(echo ${name_lc:0:1} | tr '[:lower:]' '[:upper:]')${name_lc:1}'Wallet.dmg'
+qtpro=${name_lc}'-qt.pro'
+qt=$(echo ${name_lc:0:1} | tr '[:lower:]' '[:upper:]')${name_lc:1}'-Qt.app'
+qtproc=$(echo ${name_lc:0:1} | tr '[:lower:]' '[:upper:]')${name_lc:1}'Qt'
+
 
 # make custom logos
 sips -z 256 256 -s format icns ${logo} --out ${name}/src/qt/res/icons/bitcoin.icns
